@@ -1,0 +1,60 @@
+# Recursos multimedia
+
+Aquí apuntamos de dónde sale cada archivo multimedia de La Estantería, quién es su autor, con qué licencia lo usamos y con qué herramienta lo hemos editado.
+
+## Portadas de los libros
+
+Todas las portadas las he montado en GIMP a partir de una plantilla propia: una foto de Pexels arriba y, debajo, una franja con el título y el autor. Cada foto se ha recortado y encuadrado a 400 × 600 px y se ha exportado en WebP para que pese poco.
+
+| Archivo | Fuente | Autor de la foto | Licencia | Herramienta |
+|---|---|---|---|---|
+| `img/dune_portada.webp` | Pexels | _pendiente_ | Licencia Pexels | GIMP |
+| `img/nombre_viento_portada.webp` | [Pexels](https://www.pexels.com/photo/8757601/) | Mohammed Yousif | Licencia Pexels | GIMP |
+| `img/don_quijote_portada.webp` | [Pexels](https://www.pexels.com/photo/6007183/) | Huys Photography | Licencia Pexels | GIMP |
+| `img/frankenstein_portada.webp` | [Pexels](https://www.pexels.com/photo/12889586/) | anish | Licencia Pexels | GIMP |
+| `img/orgullo_prejuicio_portada.webp` | [Pexels](https://www.pexels.com/photo/20792102/) | Maurits Bausenhart | Licencia Pexels | GIMP |
+| `img/1984_portada.webp` | [Pexels](https://www.pexels.com/photo/2035214/) | Fotios Photos | Licencia Pexels | GIMP |
+| `img/cien_anos_soledad_portada.webp` | [Pexels](https://www.pexels.com/photo/34279818/) | soubhik96 | Licencia Pexels | GIMP |
+| `img/el_hobbit_portada.webp` | [Pexels](https://www.pexels.com/photo/39041200/) | eduraw | Licencia Pexels | GIMP |
+| `img/dracula_portada.webp` | [Pexels](https://www.pexels.com/photo/5771257/) | Danut Chirtes | Licencia Pexels | GIMP |
+| `img/principito_portada.webp` | [Pexels](https://www.pexels.com/photo/40191130/) | Primitive Spaces (foto de un mural) | Licencia Pexels | GIMP |
+| `img/estudio_escarlata_portada.webp` | [Pexels](https://www.pexels.com/photo/14510637/) | Knight Bits | Licencia Pexels | GIMP |
+| `img/sombra_viento_portada.webp` | [Pexels](https://www.pexels.com/photo/18286195/) | clarabdiab | Licencia Pexels | GIMP |
+| `img/fahrenheit_451_portada.webp` | [Pexels](https://www.pexels.com/photo/5711834/) | Anna Shvets | Licencia Pexels | GIMP |
+| `img/dorian_gray_portada.webp` | [Pexels](https://www.pexels.com/photo/7127838/) | Jose Melo | Licencia Pexels | GIMP |
+| `img/isla_tesoro_portada.webp` | [Pexels](https://www.pexels.com/photo/9384584/) | Leticia Azevedo | Licencia Pexels | GIMP |
+| `img/rimas_leyendas_portada.webp` | [Pexels](https://www.pexels.com/photo/27773645/) | seymasungr | Licencia Pexels | GIMP |
+
+Las portadas no copian las de ninguna editorial: son diseños nuestros hechos con fotos libres. La de El Principito usa la foto de un mural pintado en la calle, no una ilustración del libro.
+
+## Audio
+
+| Archivo | Fuente | Autoría | Licencia | Herramienta |
+|---|---|---|---|---|
+| `audio/audiolibroorgulloyprejuicio_muestra.mp3` | LibriVox, *Orgullo y prejuicio* (Vol. 1), capítulo I | Jane Austen; traducción de José Jordán de Urríes y Azara; leído por Victor Villarraza | Dominio público | FFmpeg |
+| `audio/audiolibro_frankenstein.mp3` | [LibriVox](https://librivox.org/frankenstein-el-moderno-prometeo-by-mary-wollstonecraft-shelley/), *Frankenstein (El moderno Prometeo)*, Cartas I-III | Mary Shelley; traducción de L. Costarias; leído por Victor Villarraza | Dominio público | FFmpeg |
+
+**Orgullo y prejuicio.** Es el comienzo del primer capítulo. Con FFmpeg le quité la presentación de LibriVox, lo dejé en unos 45 segundos, le puse fundidos al principio y al final, igualé el volumen y lo pasé a mono a 96 kbps. El comando fue este:
+
+```
+ffmpeg -ss 42.8 -to 87.6 -i capitulo1.mp3 -af "afade=t=in:d=1,afade=t=out:st=42.8:d=2,loudnorm" -ac 1 -b:a 96k audiolibroorgulloyprejuicio_muestra.mp3
+```
+
+**Frankenstein.** Es el comienzo de la primera carta del capitán Walton a su hermana. Le hice lo mismo: quité los 20 primeros segundos de presentación de LibriVox, lo corté en una pausa del lector para que quedara en unos 46 segundos y le apliqué los mismos fundidos, el volumen igualado y el paso a mono a 96 kbps:
+
+```
+ffmpeg -ss 20.3 -to 66.4 -i frankensteinelmodernoprometeo_01_shelley_128kb.mp3 -af "afade=t=in:d=1,afade=t=out:st=44.1:d=2,loudnorm" -ac 1 -b:a 96k audiolibro_frankenstein.mp3
+```
+
+## Vídeo
+
+_Pendiente._
+
+## Animación
+
+_Pendiente._
+
+## Sobre las licencias
+
+- **Licencia Pexels:** las fotos se pueden usar gratis, también modificadas, y no es obligatorio citar al autor, aunque aquí lo hacemos igualmente.
+- **Dominio público:** las grabaciones de LibriVox no tienen derechos de autor y se pueden usar libremente.
