@@ -62,9 +62,21 @@ ffmpeg -f lavfi -i "color=c=0xF4EDE1:s=1280x720:r=1" -frames:v 1 -vf "drawbox=x=
 
 ## Animación
 
-_Pendiente._
+| Archivo | Fuente | Autoría | Licencia | Herramienta |
+|---|---|---|---|---|
+| `animacion/banner_firma.webp` | Diseño propio | Equipo La Estantería | Diseño propio; fuente [Great Vibes](https://fonts.google.com/specimen/Great+Vibes) con licencia SIL Open Font License 1.1 | Python (Pillow) |
+| `animacion/banner_firma_final.webp` | Último fotograma del banner | Equipo La Estantería | Igual que el banner | Python (Pillow) |
+
+Es un banner de cabecera de 1200 × 300 en el que una pluma de ave firma "La Estantería" en letra caligráfica. La pluma entra desde arriba, escribe la firma de izquierda a derecha siguiendo el trazo de las letras, hace una rúbrica en terracota debajo y se va mientras aparece "Club de lectura". Dura unos 5 segundos, se reproduce una sola vez y se queda con la firma terminada. Usa los colores de las portadas (crema, tinta oscura y terracota) y pesa unos 260 KB.
+
+La pluma la dibujamos nosotros con Pillow (vano, barbas, cañón y punta), así que no lleva fotos ni material de terceros. La única pieza externa es la fuente Great Vibes, que se puede usar, modificar e incluir en proyectos libremente con la licencia OFL.
+
+`banner_firma_final.webp` es la imagen fija del resultado final (12 KB, sin pérdida). Sirve para quien tenga activada la opción de reducir movimiento en su sistema (`prefers-reduced-motion`) o como imagen de respaldo.
+
+Los fotogramas se generaron con un script de Python: el texto se va destapando con un borde suave, la pluma sigue la altura media de la tinta en cada columna y la rúbrica es una curva Bézier con el grosor variable de una plumilla. Después se guardaron como WebP animado con `loop=1` para que se reproduzca una vez.
 
 ## Sobre las licencias
 
 - **Licencia Pexels:** las fotos se pueden usar gratis, también modificadas, y no es obligatorio citar al autor, aunque aquí lo hacemos igualmente.
 - **Dominio público:** las grabaciones de LibriVox no tienen derechos de autor y se pueden usar libremente.
+- **SIL Open Font License (OFL):** la fuente Great Vibes del banner es libre. Se puede usar, modificar e incluir en el proyecto; lo único que no se permite es venderla por separado.
