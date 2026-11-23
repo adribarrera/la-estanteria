@@ -8,7 +8,7 @@ Todas las portadas las he montado en GIMP a partir de una plantilla propia: una 
 
 | Archivo | Fuente | Autor de la foto | Licencia | Herramienta |
 |---|---|---|---|---|
-| `img/dune_portada.webp` | Pexels | _pendiente_ | Licencia Pexels | GIMP |
+| `img/dune_portada.webp` | Pexels | No se anotó al descargarla (ver nota) | Licencia Pexels | GIMP |
 | `img/nombre_viento_portada.webp` | [Pexels](https://www.pexels.com/photo/8757601/) | Mohammed Yousif | Licencia Pexels | GIMP |
 | `img/don_quijote_portada.webp` | [Pexels](https://www.pexels.com/photo/6007183/) | Huys Photography | Licencia Pexels | GIMP |
 | `img/frankenstein_portada.webp` | [Pexels](https://www.pexels.com/photo/12889586/) | anish | Licencia Pexels | GIMP |
@@ -24,6 +24,8 @@ Todas las portadas las he montado en GIMP a partir de una plantilla propia: una 
 | `img/dorian_gray_portada.webp` | [Pexels](https://www.pexels.com/photo/7127838/) | Jose Melo | Licencia Pexels | GIMP |
 | `img/isla_tesoro_portada.webp` | [Pexels](https://www.pexels.com/photo/9384584/) | Leticia Azevedo | Licencia Pexels | GIMP |
 | `img/rimas_leyendas_portada.webp` | [Pexels](https://www.pexels.com/photo/27773645/) | seymasungr | Licencia Pexels | GIMP |
+
+Los autores de las fotos se han sacado de la página o del nombre de archivo que da Pexels al descargar. En la foto de Dune no se guardó el autor; como la Licencia Pexels no obliga a citarlo, se puede usar igualmente.
 
 Las portadas no copian las de ninguna editorial: son diseños nuestros hechos con fotos libres. La de El Principito usa la foto de un mural pintado en la calle, no una ilustración del libro.
 
@@ -50,7 +52,7 @@ ffmpeg -ss 20.3 -to 66.4 -i frankensteinelmodernoprometeo_01_shelley_128kb.mp3 -
 
 | Archivo | Fuente | Autor | Licencia | Herramienta |
 |---|---|---|---|---|
-| `video/booktrailer.mp4` | [Pexels 4860897](https://www.pexels.com/video/4860897/) y [Pexels 5381802](https://www.pexels.com/video/5381802/) | _pendiente_ | Licencia Pexels | FFmpeg |
+| `video/booktrailer.mp4` | [Pexels 4860897](https://www.pexels.com/video/4860897/) y [Pexels 5381802](https://www.pexels.com/video/5381802/) | Indicado en cada enlace de Pexels |  Licencia Pexels | FFmpeg |
 | `video/booktrailer_poster.webp` | Rótulo final del propio booktrailer | Equipo La Estantería | Diseño propio | FFmpeg |
 
 El booktrailer dura 19 segundos y une dos clips de Pexels: una mano que elige un libro de la estantería y una lectora pasando las páginas. Al final lleva un rótulo nuestro con "La Estantería" y "Club de lectura" en los colores de las portadas. Está a 1280 × 720, sin audio y comprimido en H.264 para que cargue rápido (1,5 MB). El clip de la lectora venía en vertical, así que lo recorté a formato horizontal centrado en el libro. El póster, que se muestra mientras carga el vídeo, es el rótulo final del booktrailer, así que el vídeo empieza y termina con la misma imagen del club. El póster lo generé aparte con el mismo diseño, directamente a 1280 × 720 y en WebP sin pérdida, para que el texto se vea nítido (el fotograma sacado del vídeo arrastraba la compresión). Pesa unos 6 KB. El vídeo lo monté con el primer comando y el póster con el segundo:
