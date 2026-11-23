@@ -48,7 +48,17 @@ ffmpeg -ss 20.3 -to 66.4 -i frankensteinelmodernoprometeo_01_shelley_128kb.mp3 -
 
 ## Vídeo
 
-_Pendiente._
+| Archivo | Fuente | Autor | Licencia | Herramienta |
+|---|---|---|---|---|
+| `video/booktrailer.mp4` | [Pexels 4860897](https://www.pexels.com/video/4860897/) y [Pexels 5381802](https://www.pexels.com/video/5381802/) | _pendiente_ | Licencia Pexels | FFmpeg |
+| `video/booktrailer_poster.webp` | Rótulo final del propio booktrailer | Equipo La Estantería | Diseño propio | FFmpeg |
+
+El booktrailer dura 19 segundos y une dos clips de Pexels: una mano que elige un libro de la estantería y una lectora pasando las páginas. Al final lleva un rótulo nuestro con "La Estantería" y "Club de lectura" en los colores de las portadas. Está a 1280 × 720, sin audio y comprimido en H.264 para que cargue rápido (1,5 MB). El clip de la lectora venía en vertical, así que lo recorté a formato horizontal centrado en el libro. El póster, que se muestra mientras carga el vídeo, es el rótulo final del booktrailer, así que el vídeo empieza y termina con la misma imagen del club. El póster lo generé aparte con el mismo diseño, directamente a 1280 × 720 y en WebP sin pérdida, para que el texto se vea nítido (el fotograma sacado del vídeo arrastraba la compresión). Pesa unos 6 KB. El vídeo lo monté con el primer comando y el póster con el segundo:
+
+```
+ffmpeg -ss 0 -t 9 -i 4860897-uhd_4096_2160_25fps.mp4 -ss 1.5 -t 7 -i 5381802-uhd_2160_4096_30fps.mp4 -f lavfi -t 5 -i "color=c=0xF4EDE1:s=1280x720:r=25" -filter_complex "[0:v]scale=-2:720,crop=1280:720,fps=25,setsar=1,format=yuv420p[a];[1:v]crop=2160:1215:0:880,scale=1280:720,fps=25,setsar=1,format=yuv420p[b];[2:v]drawbox=x=540:y=402:w=200:h=3:color=0xB5532E:t=fill,drawtext=fontfile=LiberationSerif-Bold.ttf:text='La Estantería':fontsize=72:fontcolor=0x2B2622:x=(w-text_w)/2:y=290,drawtext=fontfile=LiberationSans-Regular.ttf:text='C L U B   D E   L E C T U R A':fontsize=22:fontcolor=0xB5532E:x=(w-text_w)/2:y=430,setsar=1,format=yuv420p[c];[a][b]xfade=transition=fade:duration=1:offset=8[ab];[ab][c]xfade=transition=fade:duration=1:offset=14,fade=t=in:st=0:d=0.6,format=yuv420p[v]" -map "[v]" -an -c:v libx264 -preset veryfast -crf 26 -pix_fmt yuv420p -movflags +faststart booktrailer.mp4
+ffmpeg -f lavfi -i "color=c=0xF4EDE1:s=1280x720:r=1" -frames:v 1 -vf "drawbox=x=540:y=402:w=200:h=3:color=0xB5532E:t=fill,drawtext=fontfile=LiberationSerif-Bold.ttf:text='La Estantería':fontsize=72:fontcolor=0x2B2622:x=(w-text_w)/2:y=290,drawtext=fontfile=LiberationSans-Regular.ttf:text='C L U B   D E   L E C T U R A':fontsize=22:fontcolor=0xB5532E:x=(w-text_w)/2:y=430,format=rgb24" -c:v libwebp -lossless 1 -compression_level 6 booktrailer_poster.webp
+```
 
 ## Animación
 
