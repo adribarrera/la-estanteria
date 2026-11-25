@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Detalle del libro · La Estantería</title>
-    <link rel="icon" type="image/svg+xml" href="logo/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </head>
 
 <body>
@@ -123,6 +123,42 @@
                     </div>
                     <p>Una novela cercana, con un ritmo ágil y varios pasajes que merece la pena volver a leer.</p>
                 </article>
+            </div>
+
+            <div class="tarjeta-form" style="margin-top: 2rem;">
+                <div class="cabecera-form">
+                    <p class="sobretitulo">Participa en el club</p>
+                    <h3>Añadir una reseña</h3>
+                </div>
+
+                <form action="#" method="post">
+                    <div class="form-rejilla">
+                        <label class="campo">
+                            <span>Tu nombre <b>*</b></span>
+                            <input type="text" name="lector_nombre" required maxlength="100" placeholder="Ej. Elena G.">
+                        </label>
+                        <label class="campo">
+                            <span>Puntuación <b>*</b></span>
+                            <select name="puntuacion" required>
+                                <option value="" selected disabled>Selecciona una nota</option>
+                                <option value="5">★★★★★ (5 - Excelente)</option>
+                                <option value="4">★★★★☆ (4 - Muy bueno)</option>
+                                <option value="3">★★★☆☆ (3 - Entretenido)</option>
+                                <option value="2">★★☆☆☆ (2 - Regular)</option>
+                                <option value="1">★☆☆☆☆ (1 - No me gustó)</option>
+                            </select>
+                        </label>
+                        <label class="campo campo-ancho">
+                            <span>Comentario <b>*</b></span>
+                            <textarea name="comentario" rows="4" required
+                                placeholder="Comparte tu opinión sobre el libro..."></textarea>
+                        </label>
+                    </div>
+
+                    <div class="form-acciones">
+                        <button type="submit" class="btn btn-primario">Publicar reseña</button>
+                    </div>
+                </form>
             </div>
         </section>
     </main>
