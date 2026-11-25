@@ -1230,3 +1230,14 @@ button {
     width: 100%;
     padding: 13px 20px;
 }
+
+/* Avisos de validación en formularios PHP */
+.alerta-error {
+    margin-bottom: 20px;
+    background-color: var(--acento);
+}
+
+.alerta-error p {
+    font-size: 14px;
+    color: var(--fondo);
+}
