@@ -7,7 +7,7 @@
     <title>Acceso y Registro · La Estantería</title>
     <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/tema.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             <div class="cabecera-acciones">
                 <label class="buscador">
                     <span class="sr-only">Buscar</span>
-                    <input type="search" placeholder="Buscar...">
+                    <input type="search" id="buscador-catalogo" placeholder="Buscar...">
                     <span aria-hidden="true">⌕</span>
                 </label>
                 <button type="button" class="btn-tema" aria-pressed="false">
@@ -65,11 +65,12 @@
 
             <!-- Iniciar sesión -->
             <div class="auth-panel" id="panel-login">
-                <form action="#" method="post" class="form-auth">
+                <form id="form-login" action="#" method="post" class="form-auth">
+                    <input type="hidden" name="accion" value="login">
                     <div class="form-rejilla">
                         <label class="campo campo-ancho">
                             <span>Correo electrónico o Usuario <b>*</b></span>
-                            <input type="email" name="login_email" required placeholder="ejemplo@correo.com"
+                            <input type="text" name="login_email" required placeholder="ejemplo@correo.com"
                                 autocomplete="username">
                         </label>
                         <label class="campo campo-ancho">
@@ -95,7 +96,8 @@
 
             <!-- Registrarse -->
             <div class="auth-panel" id="panel-registro">
-                <form action="#" method="post" class="form-auth">
+                <form id="form-registro" action="#" method="post" class="form-auth">
+                    <input type="hidden" name="accion" value="registro">
                     <div class="form-rejilla">
                         <label class="campo">
                             <span>Nombre completo <b>*</b></span>

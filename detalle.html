@@ -7,7 +7,7 @@
     <title>Detalle del libro · La Estantería</title>
     <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/tema.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             <div class="cabecera-acciones">
                 <label class="buscador">
                     <span class="sr-only">Buscar</span>
-                    <input type="search" placeholder="Buscar...">
+                    <input type="search" id="buscador-catalogo" placeholder="Buscar...">
                     <span aria-hidden="true">⌕</span>
                 </label>
                 <button type="button" class="btn-tema" aria-pressed="false">
@@ -131,13 +131,9 @@
                     <h3>Añadir una reseña</h3>
                 </div>
 
-                <form action="#" method="post">
+                <form id="form-resena" action="#" method="post">
                     <div class="form-rejilla">
-                        <label class="campo">
-                            <span>Tu nombre <b>*</b></span>
-                            <input type="text" name="lector_nombre" required maxlength="100" placeholder="Ej. Elena G.">
-                        </label>
-                        <label class="campo">
+                        <label class="campo campo-ancho">
                             <span>Puntuación <b>*</b></span>
                             <select name="puntuacion" required>
                                 <option value="" selected disabled>Selecciona una nota</option>
