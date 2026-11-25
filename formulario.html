@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Añadir libro · La Estantería</title>
-    <link rel="icon" type="image/svg+xml" href="logo/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </head>
 
 <body>
@@ -53,7 +53,7 @@
                 <p>Completa los datos para añadir una nueva lectura al catálogo.</p>
             </div>
 
-            <form action="#" method="post">
+            <form action="#" method="post" enctype="multipart/form-data">
                 <div class="form-rejilla">
                     <label class="campo">
                         <span>Título <b>*</b></span>
@@ -67,15 +67,19 @@
                         <span>Género <b>*</b></span>
                         <select name="genero" required>
                             <option value="" selected disabled>Selecciona un género</option>
-                            <option>Romance</option>
-                            <option>Misterio y crimen</option>
-                            <option>Ciencia ficción y fantasía</option>
-                            <option>Religión y desarrollo personal</option>
+                            <option value="Ciencia ficción">Ciencia ficción</option>
+                            <option value="Fantasía">Fantasía</option>
+                            <option value="Clásico">Clásico</option>
+                            <option value="Terror">Terror</option>
+                            <option value="Misterio">Misterio</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Aventura">Aventura</option>
+                            <option value="Poesía">Poesía</option>
                         </select>
                     </label>
                     <label class="campo">
                         <span>Año <b>*</b></span>
-                        <input type="number" name="anio" required placeholder="2025">
+                        <input type="number" name="anio_publicacion" min="1000" max="2026" required placeholder="2026">
                     </label>
                     <label class="campo campo-ancho">
                         <span>Sinopsis <b>*</b></span>
@@ -86,9 +90,9 @@
                         <span>Estado de lectura <b>*</b></span>
                         <select name="estado" required>
                             <option value="" selected disabled>Selecciona un estado</option>
-                            <option>Pendiente</option>
-                            <option>Leyendo</option>
-                            <option>Leído</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="leyendo">Leyendo</option>
+                            <option value="leido">Leído</option>
                         </select>
                     </label>
                 </div>
@@ -97,14 +101,10 @@
                     <label class="caja-subida">
                         <span class="mas" aria-hidden="true">+</span>
                         <span>Añadir imagen de portada</span>
-                        <small>Obligatorio</small>
-                        <input type="file" name="portada" accept="image/*" class="sr-only" required>
+                        <small>Obligatorio (WEBP, JPG o PNG)</small>
+                        <input type="file" name="portada" accept="image/webp,image/jpeg,image/png" class="sr-only"
+                            required>
                     </label>
-                    <div class="caja-resena">
-                        <span class="estrellas" role="img" aria-label="0 de 5 estrellas">☆☆☆☆☆</span>
-                        <span>Reseña</span>
-                        <small>Opcional</small>
-                    </div>
                 </div>
 
                 <div class="form-acciones">
