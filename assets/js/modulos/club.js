@@ -127,3 +127,21 @@ export function getCookie(nombre) {
     }
     return null;
 }
+
+/**
+ * Guarda en una cookie el título del libro que se está consultando.
+ * @param {LectorClub} lector - Instancia del lector actual.
+ * @returns {void}
+ */
+function guardarUltimaLectura(lector) {
+    // Comprobamos que estamos en la ficha de uno de los libros.
+    const infoLibro = document.querySelector('.info-libro');
+    if (!infoLibro) {
+        return;
+    }
+    // Leer el título del libro desde <h1>
+    const titulo = infoLibro.querySelector('h1').textContent;
+    lector.registrarVisita(titulo);
+    // Guardamos el título del libro en una cookie.
+    setCookie('ultimoLibro', titulo, 30);
+}
