@@ -158,7 +158,7 @@ function mostrarUltimaLectura(lector) {
     if (!rejillaLibros) {
         return;
     }
-    
+
     // Si el lector no ha consultado ningún libro, no mostramos nada.
     if (!lector.ultimoLibro) {
         return;
@@ -171,4 +171,50 @@ function mostrarUltimaLectura(lector) {
     // Insertamos el aviso al final del encabezado del catálogo.
     const encabezado = document.querySelector('.encabezado-seccion');
     encabezado.appendChild(aviso);
+}
+
+/**
+ * Crea desde JavaScript el botón de favoritos en la ficha del libro y gestiona su clic.
+ * Solo actúa en la ficha de un libro.
+ * @param {LectorClub} lector - Instancia del lector actual.
+ * @returns {void}
+ */
+function prepararBotonFavorito(lector) {
+    // Comprobamos que estamos en la ficha de un libro.
+    const infoLibro = document.querySelector('.info-libro');
+    if (!infoLibro) {
+        return;
+    }
+
+    // Leemos el título del libro desde su <h1>.
+    const titulo = infoLibro.querySelector('h1').textContent;
+
+    // Creamos el botón de favoritos.
+    const button = document.createElement('button');
+
+    // El texto depende de si el libro ya está en favoritos.
+    if (lector.favoritos.includes(titulo)) {
+        button.textContent = "Quitar de favoritos";
+    } else {
+        button.textContent = "Añadir a favoritos";
+    }
+
+    // Insertamos el botón al final de la ficha del libro.
+    infoLibro.appendChild(button);
+
+    // Al hacer clic, añadimos o quitamos el libro de favoritos.
+    button.addEventListener('click', function () {
+        // toggleFavorito devuelve true si el libro queda en favoritos y false si se quita.
+        const esFavorito = lector.toggleFavorito(titulo);
+
+        // Actualizamos el texto del botón según el nuevo estado.
+        if (esFavorito) {
+            button.textContent = "Quitar de favoritos";
+        } else {
+            button.textContent = "Añadir a favoritos";
+        }
+
+        // Guardamos la lista en una cookie, con los títulos unidos por comas.
+        setCookie('favoritos', lector.favoritos.join(','), 30);
+    });
 }
