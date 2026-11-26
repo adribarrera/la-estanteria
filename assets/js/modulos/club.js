@@ -105,3 +105,25 @@ export function setCookie(nombre, valor, dias) {
     // Creamos la cookie.
     document.cookie = `${nombre}=${encodeURIComponent(valor)}; expires=${fecha.toUTCString()}; path=/`;
 }
+
+/**
+ * Busca una cookie por su nombre y devuelve su valor.
+ * @param {string} nombre - Nombre de la cookie que se busca.
+ * @returns {string|null} El valor decodificado, o null si no existe.
+ */
+export function getCookie(nombre) {
+    // Comprueba que el navegador tiene las cookies activadas.
+    if (!navigator.cookieEnabled) {
+        return null;
+    }
+    // Recorremos todas las cookies.
+    for (const cookie of document.cookie.split("; ")) {
+        // Divide la cookie en nombre y valor.
+        const [nombreCookie, valorCookie] = cookie.split("=");
+        // Si el nombre coincide, devolvemos el valor decodificado.
+        if (nombreCookie === nombre) {
+            return decodeURIComponent(valorCookie);
+        }
+    }
+    return null;
+}
