@@ -218,3 +218,32 @@ function prepararBotonFavorito(lector) {
         setCookie('favoritos', lector.favoritos.join(','), 30);
     });
 }
+
+/**
+ * Punto de entrada del módulo: recupera los datos del lector desde las cookies,
+ * crea el lector y activa todas las funcionalidades del club.
+ * La importa y la llama app.js al cargar la página.
+ * @returns {void}
+ */
+export function iniciarClub() {
+    // Leemos de las cookies el último libro y los favoritos.
+    const ultimoLibro = getCookie('ultimoLibro');
+    const favoritosCookie = getCookie('favoritos');
+
+    // Convertimos el texto de la cookie en un array de títulos o vacío si no hay favoritos.
+    let favoritos;
+
+    if (favoritosCookie) {
+        favoritos = favoritosCookie.split(',');
+    } else {
+        favoritos = [];
+    }
+
+    // Creamos el lector con los datos recuperados.
+    const lector = new LectorClub(ultimoLibro, favoritos);
+
+    // Activamos cada funcionalidad (cada una comprueba si está en su página).
+    guardarUltimaLectura(lector);
+    mostrarUltimaLectura(lector);
+    prepararBotonFavorito(lector);
+}
