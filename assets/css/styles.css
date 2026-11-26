@@ -1241,3 +1241,76 @@ button {
     font-size: 14px;
     color: var(--fondo);
 }
+
+/* Estilos de alertas de éxito y controles CRUD en detalle.php */
+.alerta-exito {
+    border-left: 4px solid #2e7d32;
+    background-color: rgba(46, 125, 50, 0.1);
+    color: inherit;
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-form-resena {
+    margin-top: 2rem;
+}
+
+.detalle-acciones-gestion {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-estado-rapido,
+.detalle-botones-crud,
+.form-inline-crud {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.form-estado-rapido select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--borde, rgba(128, 128, 128, 0.3));
+    background: var(--superficie, transparent);
+    color: inherit;
+    font: inherit;
+}
+
+.btn-peligro {
+    background-color: #c62828;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-peligro:hover {
+    background-color: #b71c1c;
+}
+
+.form-borrar-resena {
+    margin-left: auto;
+}
+
+.btn-texto-peligro {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 4px;
+}
+
+.bloque-audio-libro {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--borde, rgba(128, 128, 128, 0.2));
+}
+
+.bloque-audio-libro audio {
+    width: 100%;
+    margin-top: 8px;
+}
