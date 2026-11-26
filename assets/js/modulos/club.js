@@ -15,7 +15,7 @@ export class LectorClub {
         this.favoritos = favoritos;
         this.generoPreferido = generoPreferido;
     }
-    
+
     /**
      * Registra el último libro que ha consultado el lector.
      * @param {string} titulo - Título del libro visitado.
@@ -88,4 +88,20 @@ export class LectorClub {
         // Unimos las tres líneas en un solo texto con template literals
         return `${ultimo}\n${favs}\n${genero}`;
     }
+}
+
+/**
+ * Crea una cookie con el nombre, valor y número de días que se conservará.
+ * @param {string} nombre - Nombre de la cookie.
+ * @param {string} valor - Valor de la cookie.
+ * @param {number} dias - Número de días que se conservará la cookie.
+ * @returns {void}
+ */
+export function setCookie(nombre, valor, dias) {
+    // Fecha actual.
+    const fecha = new Date();
+    // Sumamos los días convertidos a milisegundos.
+    fecha.setTime(fecha.getTime() + dias * 24 * 60 * 60 * 1000);
+    // Creamos la cookie.
+    document.cookie = `${nombre}=${encodeURIComponent(valor)}; expires=${fecha.toUTCString()}; path=/`;
 }
