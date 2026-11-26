@@ -8,6 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/tema.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
 </head>
 
 <body>
@@ -65,7 +66,7 @@
 
             <!-- Iniciar sesión -->
             <div class="auth-panel" id="panel-login">
-                <form id="form-login" action="#" method="post" class="form-auth">
+                <form id="form-login" action="#" method="post" class="form-auth" data-validar>
                     <input type="hidden" name="accion" value="login">
                     <div class="form-rejilla">
                         <label class="campo campo-ancho">
@@ -96,7 +97,7 @@
 
             <!-- Registrarse -->
             <div class="auth-panel" id="panel-registro">
-                <form id="form-registro" action="#" method="post" class="form-auth">
+                <form id="form-registro" action="#" method="post" class="form-auth" data-validar>
                     <input type="hidden" name="accion" value="registro">
                     <div class="form-rejilla">
                         <label class="campo">
