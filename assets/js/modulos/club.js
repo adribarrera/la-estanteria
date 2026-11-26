@@ -145,3 +145,30 @@ function guardarUltimaLectura(lector) {
     // Guardamos el título del libro en una cookie.
     setCookie('ultimoLibro', titulo, 30);
 }
+
+/**
+ * Muestra en el catálogo el aviso "Última lectura consultada: "
+ * Solo actúa en el catálogo (index).
+ * @param {LectorClub} lector - Instancia del lector actual.
+ * @returns {void}
+ */
+function mostrarUltimaLectura(lector) {
+    // Comprobamos que estamos en el catálogo.
+    const rejillaLibros = document.querySelector('.rejilla-libros');
+    if (!rejillaLibros) {
+        return;
+    }
+    
+    // Si el lector no ha consultado ningún libro, no mostramos nada.
+    if (!lector.ultimoLibro) {
+        return;
+    }
+
+    // Crear un elemento <p> con el último libro consultado.
+    const aviso = document.createElement('p');
+    // Le damos el texto con textContent (seguro frente a XSS).
+    aviso.textContent = `Última lectura consultada: ${lector.ultimoLibro}`;
+    // Insertamos el aviso al final del encabezado del catálogo.
+    const encabezado = document.querySelector('.encabezado-seccion');
+    encabezado.appendChild(aviso);
+}
