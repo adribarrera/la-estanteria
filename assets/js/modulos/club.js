@@ -220,6 +220,48 @@ function prepararBotonFavorito(lector) {
 }
 
 /**
+ * Activa el buscador del catálogo: filtra las tarjetas mientras el usuario escribe
+ * y, en el catálogo, evita que Intro envíe el formulario.
+ * @returns {void}
+ */
+function activarBuscador() {
+    // Buscamos el campo del buscador; si no existe, salimos.
+    const buscador = document.getElementById('buscador-catalogo');
+    if (!buscador) {
+        return;
+    }
+
+    // Cada vez que se escribe o borra una letra, filtramos las tarjetas.
+    buscador.addEventListener('input', function () {
+        // Lo escrito, sin espacios sobrantes y en minúsculas.
+        const buscado = buscador.value.trim().toLowerCase();
+
+        // Recorremos todas las tarjetas del catálogo.
+        document.querySelectorAll(".libro").forEach(function (tarjeta) {
+            // Comprobamos si el título (en minúsculas) contiene lo escrito.
+            const titulo = tarjeta.querySelector("span").textContent;
+            const mostrar = titulo.toLowerCase().includes(buscado);
+
+            // Si coincide, la mostramos con su estilo del CSS; si no, la ocultamos.
+            if (mostrar) {
+                tarjeta.style.display = "";
+            } else {
+                tarjeta.style.display = "none";
+            }
+        });
+    });
+
+    // En el catálogo, Intro no envía el formulario (ya filtramos en vivo).
+    const formulario = buscador.closest('form');
+    if (formulario && document.querySelector('.rejilla-libros')) {
+        formulario.addEventListener('submit', function (evento) {
+            // Cancelamos la acción por defecto del formulario: enviarse y recargar la página.
+            evento.preventDefault();
+        });
+    }
+}
+
+/**
  * Punto de entrada del módulo: recupera los datos del lector desde las cookies,
  * crea el lector y activa todas las funcionalidades del club.
  * La importa y la llama app.js al cargar la página.
@@ -246,4 +288,5 @@ export function iniciarClub() {
     guardarUltimaLectura(lector);
     mostrarUltimaLectura(lector);
     prepararBotonFavorito(lector);
+    activarBuscador();
 }
