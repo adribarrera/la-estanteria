@@ -44,7 +44,7 @@ export const Validador = {
             // ($) la validacion llega hasta el final, sin nada detras
             mensaje: "Selecciona un género."
         },
-        anio: {
+        anio_publicacion: {
             obligatorio: true,
             patron: /^\d{4}$/,
             // (d) debe de haber un digito del 1-9
@@ -61,13 +61,13 @@ export const Validador = {
             // {10,500} minimo 10 caracteres, maximo 500
             mensaje: "La sinopsis debe tener entre 10 y 500 caracteres."
         },
-        resena: {
-            obligatorio: false,
+        comentario: {
+            obligatorio: true,
             patron: /^[\s\S]{10,500}$/,
-            mensaje: "La reseña debe tener entre 10 y 500 caracteres."
+            mensaje: "El comentario debe tener entre 10 y 500 caracteres."
         },
         puntuacion: {
-            obligatorio: false,
+            obligatorio: true,
             patron: /^[1-5]$/,
             mensaje: "La puntuación debe ser un número del 1 al 5."
         }
