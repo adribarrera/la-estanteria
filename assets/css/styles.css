@@ -732,20 +732,10 @@ button {
     font-size: 14px;
 }
 
-.form-rejilla {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px 18px;
-}
-
 .campo {
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.campo-ancho {
-    grid-column: 1 / -1;
 }
 
 .campo>span {
@@ -786,11 +776,9 @@ button {
     outline: 2px solid var(--acento);
 }
 
+/* Solo el margen. La rejilla de dentro es de Bootstrap */
 .form-extras {
     margin-top: 28px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
 }
 
 .caja-subida,
@@ -809,6 +797,7 @@ button {
 }
 
 .caja-subida {
+    height: 100%;
     cursor: pointer;
 }
 
@@ -1039,15 +1028,6 @@ button {
 
     .cabecera-form h1 {
         font-size: 36px;
-    }
-
-    .form-rejilla,
-    .form-extras {
-        grid-template-columns: 1fr;
-    }
-
-    .form-extras {
-        gap: 12px;
     }
 
     .form-acciones {

@@ -271,7 +271,7 @@ require_once __DIR__ . "/includes/header.php";
                         <!-- Utilidades flex de Bootstrap. Estado a la izquierda, editar/eliminar a la derecha. Si no cabe, baja de línea -->
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
                             <!-- Formulario para actualizar el estado -->
-                            <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido">
+                            <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido d-flex align-items-center gap-2">
                                 <input type="hidden" name="accion" value="actualizar_estado">
                                 <label class="sr-only" for="select-estado">Cambiar estado de lectura</label>
                                 <select name="estado" id="select-estado">
@@ -370,8 +370,8 @@ require_once __DIR__ . "/includes/header.php";
                 <?php else: ?>
                     <form id="form-resena" action="detalle.php?id=<?= $idLibro ?>" method="post">
                         <input type="hidden" name="accion" value="crear_resena">
-                        <div class="form-rejilla">
-                            <label class="campo campo-ancho">
+                        <div class="row gx-3 gy-4">
+                            <label class="campo col-12">
                                 <span>Puntuación <b>*</b></span>
                                 <select name="puntuacion" required>
                                     <option value="" selected disabled>Selecciona una nota</option>
@@ -382,7 +382,7 @@ require_once __DIR__ . "/includes/header.php";
                                     <option value="1">★☆☆☆☆ (1 - No me gustó)</option>
                                 </select>
                             </label>
-                            <label class="campo campo-ancho">
+                            <label class="campo col-12">
                                 <span>Comentario <b>*</b></span>
                                 <textarea name="comentario" rows="4" required placeholder="Comparte tu opinión sobre el libro..."></textarea>
                             </label>

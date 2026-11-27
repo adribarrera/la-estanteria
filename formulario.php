@@ -263,7 +263,7 @@ require_once __DIR__ . "/includes/header.php";
             </div>
 
             <?php if (!empty($errores)): ?>
-                <div class="caja-resumen alerta-error" role="alert" style="margin-bottom: 1.5rem;">
+                <div class="caja-resumen alerta-error mb-4" role="alert">
                     <?php foreach ($errores as $error): ?>
                         <p><?= escapar($error) ?></p>
                     <?php endforeach; ?>
@@ -271,16 +271,16 @@ require_once __DIR__ . "/includes/header.php";
             <?php endif; ?>
 
             <form id="form-libro" action="<?= $esEdicion ? "formulario.php?id=" . $idLibro : "formulario.php" ?>" method="post" enctype="multipart/form-data" data-validar>
-                <div class="form-rejilla">
-                    <label class="campo">
+                <div class="row gx-3 gy-4">
+                    <label class="campo col-md-6">
                         <span>Título <b>*</b></span>
                         <input type="text" name="titulo" required placeholder="Ej. La última carta" value="<?= escapar($datos["titulo"]) ?>">
                     </label>
-                    <label class="campo">
+                    <label class="campo col-md-6">
                         <span>Autor <b>*</b></span>
                         <input type="text" name="autor" required placeholder="Nombre del autor" value="<?= escapar($datos["autor"]) ?>">
                     </label>
-                    <label class="campo">
+                    <label class="campo col-md-6">
                         <span>Género <b>*</b></span>
                         <select name="genero" required>
                             <option value="" disabled <?= $datos["genero"] === "" ? "selected" : "" ?>>Selecciona un género</option>
@@ -291,15 +291,15 @@ require_once __DIR__ . "/includes/header.php";
                             <?php endforeach; ?>
                         </select>
                     </label>
-                    <label class="campo">
+                    <label class="campo col-md-6">
                         <span>Año <b>*</b></span>
                         <input type="number" name="anio_publicacion" min="1000" max="<?= date("Y") ?>" required placeholder="<?= date("Y") ?>" value="<?= escapar($datos["anio_publicacion"]) ?>">
                     </label>
-                    <label class="campo campo-ancho">
+                    <label class="campo col-12">
                         <span>Sinopsis <b>*</b></span>
                         <textarea name="sinopsis" rows="5" required placeholder="Escribe una breve sinopsis..."><?= escapar($datos["sinopsis"]) ?></textarea>
                     </label>
-                    <label class="campo campo-ancho">
+                    <label class="campo col-12">
                         <span>Estado de lectura <b>*</b></span>
                         <select name="estado" required>
                             <option value="" disabled <?= $datos["estado"] === "" ? "selected" : "" ?>>Selecciona un estado</option>
@@ -312,20 +312,27 @@ require_once __DIR__ . "/includes/header.php";
                     </label>
                 </div>
 
+                <!-- form-extras solo pone el margen. Dentro la rejilla de Bootstrap -->
                 <div class="form-extras">
-                    <label class="caja-subida">
-                        <span class="mas" aria-hidden="true">+</span>
-                        <span><?= $esEdicion ? "Cambiar imagen de portada" : "Añadir imagen de portada" ?></span>
-                        <small><?= $esEdicion ? "Opcional · Se mantiene la actual si no subes otra (WEBP, JPG o PNG)" : "Obligatorio (WEBP, JPG o PNG · Máx. 5 MB)" ?></small>
-                        <input type="file" name="portada" accept="image/webp,image/jpeg,image/png" class="sr-only" <?= $esEdicion ? "" : "required" ?>>
-                    </label>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="caja-subida">
+                                <span class="mas" aria-hidden="true">+</span>
+                                <span><?= $esEdicion ? "Cambiar imagen de portada" : "Añadir imagen de portada" ?></span>
+                                <small><?= $esEdicion ? "Opcional · Se mantiene la actual si no subes otra (WEBP, JPG o PNG)" : "Obligatorio (WEBP, JPG o PNG · Máx. 5 MB)" ?></small>
+                                <input type="file" name="portada" accept="image/webp,image/jpeg,image/png" class="sr-only" <?= $esEdicion ? "" : "required" ?>>
+                            </label>
+                        </div>
 
-                    <label class="caja-subida" style="margin-top: 1rem;">
-                        <span class="mas" aria-hidden="true">♪</span>
-                        <span><?= ($esEdicion && $datos["audio"] !== "") ? "Sustituir fragmento de audiolibro" : "Añadir fragmento de audiolibro" ?></span>
-                        <small>Opcional (MP3, OGG o WAV · Máx. 15 MB)</small>
-                        <input type="file" name="audio" accept="audio/mpeg,audio/ogg,audio/wav" class="sr-only">
-                    </label>
+                        <div class="col-md-6">
+                            <label class="caja-subida">
+                                <span class="mas" aria-hidden="true">♪</span>
+                                <span><?= ($esEdicion && $datos["audio"] !== "") ? "Sustituir fragmento de audiolibro" : "Añadir fragmento de audiolibro" ?></span>
+                                <small>Opcional (MP3, OGG o WAV · Máx. 15 MB)</small>
+                                <input type="file" name="audio" accept="audio/mpeg,audio/ogg,audio/wav" class="sr-only">
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-acciones">

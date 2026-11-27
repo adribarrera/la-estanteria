@@ -150,13 +150,13 @@ require_once __DIR__ . "/includes/header.php";
                 <form id="form-login" action="login.php" method="post" class="form-auth">
                     <!-- Campo oculto para saber en PHP qué formulario de los dos se ha enviado -->
                     <input type="hidden" name="accion" value="login">
-                    <div class="form-rejilla">
-                        <label class="campo campo-ancho">
+                    <div class="row gx-3 gy-4">
+                        <label class="campo col-12">
                             <span>Correo electrónico o Usuario <b>*</b></span>
                             <input type="text" name="login_email" required value="<?= escapar($_POST["login_email"] ?? "") ?>" placeholder="ejemplo@correo.com" autocomplete="username">
                         </label>
 
-                        <label class="campo campo-ancho">
+                        <label class="campo col-12">
                             <span>Contraseña <b>*</b></span>
                             <input type="password" name="login_password" required placeholder="Tu contraseña"
                                 autocomplete="current-password">
@@ -181,28 +181,28 @@ require_once __DIR__ . "/includes/header.php";
             <div class="auth-panel" id="panel-registro">
                 <form id="form-registro" action="login.php" method="post" class="form-auth">
                     <input type="hidden" name="accion" value="registro">
-                    <div class="form-rejilla">
-                        <label class="campo">
+                    <div class="row gx-3 gy-4">
+                        <label class="campo col-md-6">
                             <span>Nombre completo <b>*</b></span>
                             <input type="text" name="reg_nombre" required value="<?= escapar($_POST["reg_nombre"] ?? "") ?>" placeholder="Ej. Clara Montes" autocomplete="name">
                         </label>
 
-                        <label class="campo">
+                        <label class="campo col-md-6">
                             <span>Nombre de usuario <b>*</b></span>
                             <input type="text" name="reg_usuario" required value="<?= escapar($_POST["reg_usuario"] ?? "") ?>" placeholder="Ej. clara_lectora" autocomplete="username">
                         </label>
                         
-                        <label class="campo campo-ancho">
+                        <label class="campo col-12">
                             <span>Correo electrónico <b>*</b></span>
                             <input type="email" name="reg_email" required value="<?= escapar($_POST["reg_email"] ?? "") ?>" placeholder="ejemplo@correo.com" autocomplete="email">
                         </label>
 
-                        <label class="campo">
+                        <label class="campo col-md-6">
                             <span>Contraseña <b>*</b></span>
                             <input type="password" name="reg_pass1" required placeholder="Mínimo 6 caracteres" minlength="6" autocomplete="new-password">
                         </label>
 
-                        <label class="campo">
+                        <label class="campo col-md-6">
                             <span>Repetir contraseña <b>*</b></span>
                             <input type="password" name="reg_pass2" required placeholder="Repite tu contraseña" minlength="6" autocomplete="new-password">
                         </label>
