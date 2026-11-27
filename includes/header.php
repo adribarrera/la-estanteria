@@ -29,7 +29,7 @@ $busquedaActual = $_GET["q"] ?? "";
 <body>
     <div class="cabecera-fija">
         <!-- Fila 1. Logo + acciones -->
-        <header class="cabecera navbar navbar-expand-lg">
+        <header class="cabecera navbar navbar-expand-md">
             <a href="index.php" class="marca">
                 <span class="marca-icono" aria-hidden="true"></span>
                 <span>La Estantería</span>
@@ -79,7 +79,7 @@ $busquedaActual = $_GET["q"] ?? "";
         </header>
 
         <!-- Fila 2. Enlaces. Mismo botón hamburgues. Marcamos con "activo" la pestaña de la página actual -->
-        <nav class="barra-enlaces navbar navbar-expand-lg" aria-label="Navegación principal">
+        <nav class="barra-enlaces navbar navbar-expand-md" aria-label="Navegación principal">
             <div class="collapse navbar-collapse menu-principal" id="menu-enlaces">
                 <div class="navbar-nav">
                     <a href="index.php" <?= $paginaActiva === 'inicio' ? 'class="activo" aria-current="page"' : '' ?>>Inicio</a>

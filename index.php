@@ -117,26 +117,29 @@ require_once __DIR__ . "/includes/header.php";
                     <p>Aún no hay reseñas publicadas. Entra en cualquier libro del catálogo y deja la primera.</p>
                 </div>
             <?php else: ?>
-                <div class="rejilla-resenas">
+                <!-- Rejilla de Bootstrap: 1 columna en móvil, 3 a partir de md (768px). g-3 separa las tarjetas -->
+                <div class="row g-3">
                     <?php foreach ($resenasDestacadas as $resena): ?>
                         <?php
                         // Nos aseguramos que la puntuación esté entre 1 y 5 y generamos las estrellas que se ven
                         $puntos = max(1, min(5, (int) $resena["puntuacion"]));
                         $estrellas = str_repeat("★", $puntos) . str_repeat("☆", 5 - $puntos);
                         ?>
-                        <article class="resena">
-                            <div class="resena-cabecera">
-                                <div class="avatar" aria-hidden="true"></div>
-                                <div>
-                                    <strong><?= escapar($resena["nombre_completo"]) ?></strong>
-                                    <span class="estrellas" role="img" aria-label="<?= $puntos ?> de 5 estrellas"><?= $estrellas ?></span>
+                        <div class="col-md-4">
+                            <article class="resena">
+                                <div class="resena-cabecera">
+                                    <div class="avatar" aria-hidden="true"></div>
+                                    <div>
+                                        <strong><?= escapar($resena["nombre_completo"]) ?></strong>
+                                        <span class="estrellas" role="img" aria-label="<?= $puntos ?> de 5 estrellas"><?= $estrellas ?></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <p><?= escapar($resena["comentario"]) ?></p>
-                            <p class="resena-libro-ref">
-                                En <a href="detalle.php?id=<?= (int) $resena["id_libro"] ?>"><?= escapar($resena["titulo_libro"]) ?></a>
-                            </p>
-                        </article>
+                                <p><?= escapar($resena["comentario"]) ?></p>
+                                <p class="resena-libro-ref">
+                                    En <a href="detalle.php?id=<?= (int) $resena["id_libro"] ?>"><?= escapar($resena["titulo_libro"]) ?></a>
+                                </p>
+                            </article>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
