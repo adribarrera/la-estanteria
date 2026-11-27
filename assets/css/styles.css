@@ -1052,8 +1052,8 @@ button {
     }
 }
 
-/* ---------- Acceso y registro (pestañas solo con CSS) ----------
-   Va al final a propósito: ajusta el título del login por encima de las reglas móviles. */
+/* ---------- Acceso y registro (pestañas: Interfaz.iniciarPestanas en interfaz.js) ----------
+   Va al final a propósito porque ajusta el título del login por encima de las reglas móviles. */
 .tarjeta-auth {
     max-width: 580px;
 }
@@ -1100,42 +1100,11 @@ button {
     color: var(--texto);
 }
 
-/* Pestaña activa: la marca el radio que está seleccionado */
-#auth-login:checked~.auth-tabs [for="auth-login"],
-#auth-registro:checked~.auth-tabs [for="auth-registro"] {
+/* Pestaña activa: la marca Interfaz.mostrarPanel() con la clase .activa */
+.auth-tab.activa {
     background: var(--pestana-activa);
     color: var(--acento);
     box-shadow: var(--pestana-sombra);
-}
-
-#auth-login:focus-visible~.auth-tabs [for="auth-login"],
-#auth-registro:focus-visible~.auth-tabs [for="auth-registro"] {
-    outline: 3px solid var(--acento);
-    outline-offset: 2px;
-}
-
-/* Solo se ve el panel de la pestaña seleccionada */
-.auth-panel {
-    display: none;
-}
-
-#auth-login:checked~#panel-login,
-#auth-registro:checked~#panel-registro {
-    display: block;
-}
-
-.form-auth {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.auth-opciones {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
 }
 
 .auth-recordar {
@@ -1152,29 +1121,6 @@ button {
     height: 16px;
     accent-color: var(--acento);
     cursor: pointer;
-}
-
-.link-olvido {
-    color: var(--texto-sec);
-    font-size: 12px;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.link-olvido:hover {
-    color: var(--acento);
-}
-
-.auth-acciones-doble {
-    margin-top: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.btn-auth {
-    width: 100%;
-    padding: 13px 20px;
 }
 
 /* Avisos de validación en formularios PHP */

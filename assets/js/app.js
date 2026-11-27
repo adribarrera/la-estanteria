@@ -4,6 +4,7 @@ import { iniciarClub } from "./modulos/club.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     Interfaz.iniciarTema();
+    Interfaz.iniciarPestanas();
     Validador.iniciarFormularios();
     iniciarClub();
 });

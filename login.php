@@ -126,7 +126,7 @@ require_once __DIR__ . "/includes/header.php";
                 <h1>Área de clientes</h1>
                 <p>Inicia sesión con tu cuenta o regístrate para participar en el club de lectura, añadir valoraciones y guardar tus libros favoritos.</p>
             </div>
-            
+
             <!-- Si hay algún fallo de validación o de credenciales lo mostramos aquí -->
             <?php if (!empty($errores)): ?>
                 <div class="caja-resumen alerta-error" role="alert">
@@ -136,18 +136,18 @@ require_once __DIR__ . "/includes/header.php";
                 </div>
             <?php endif; ?>
 
-            <!-- Los radios controlan por CSS qué formulario se ve y PHP marca el que estaba activo -->
-            <input type="radio" name="modo" id="auth-login" class="sr-only" <?= $modoActivo === "login" ? "checked" : "" ?>>
-            <input type="radio" name="modo" id="auth-registro" class="sr-only" <?= $modoActivo === "registro" ? "checked" : "" ?>>
-
-            <div class="auth-tabs">
-                <label for="auth-login" class="auth-tab">Iniciar sesión</label>
-                <label for="auth-registro" class="auth-tab">Registrarse</label>
+            <!-- Pestañas. PHP marca la activa al cargar y después Interfaz.iniciarPestanas() las cambia.
+            data-panel indica el id del panel que muestra cada pestaña -->
+            <div class="auth-tabs" role="tablist">
+                <button type="button" class="auth-tab <?= $modoActivo === "login" ? "activa" : "" ?>" data-panel="panel-login"
+                    role="tab" aria-controls="panel-login" aria-selected="<?= $modoActivo === "login" ? "true" : "false" ?>">Iniciar sesión</button>
+                <button type="button" class="auth-tab <?= $modoActivo === "registro" ? "activa" : "" ?>" data-panel="panel-registro"
+                    role="tab" aria-controls="panel-registro" aria-selected="<?= $modoActivo === "registro" ? "true" : "false" ?>">Registrarse</button>
             </div>
 
-            <!-- Iniciar sesión -->
-            <div class="auth-panel" id="panel-login">
-                <form id="form-login" action="login.php" method="post" class="form-auth">
+            <!-- Iniciar sesión. d-none oculta el panel que no está activo -->
+            <div class="auth-panel <?= $modoActivo === "login" ? "" : "d-none" ?>" id="panel-login" role="tabpanel">
+                <form id="form-login" action="login.php" method="post" class="d-flex flex-column gap-4">
                     <!-- Campo oculto para saber en PHP qué formulario de los dos se ha enviado -->
                     <input type="hidden" name="accion" value="login">
                     <div class="row gx-3 gy-4">
@@ -163,23 +163,23 @@ require_once __DIR__ . "/includes/header.php";
                         </label>
                     </div>
 
-                    <div class="auth-opciones">
+                    <div>
                         <label class="auth-recordar">
                             <input type="checkbox" name="recordarme" checked>
                             <span>Recordar mi sesión</span>
                         </label>
                     </div>
 
-                    <div class="auth-acciones-doble">
-                        <button type="submit" class="btn btn-primario btn-auth">Iniciar sesión</button>
-                        <label for="auth-registro" class="btn btn-secundario btn-auth">Registrar nueva cuenta</label>
+                    <div class="d-flex flex-column gap-2 mt-2">
+                        <button type="submit" class="btn btn-primario">Iniciar sesión</button>
+                        <button type="button" class="btn btn-secundario" data-panel="panel-registro">Registrar nueva cuenta</button>
                     </div>
                 </form>
             </div>
 
             <!-- Registrarse -->
-            <div class="auth-panel" id="panel-registro">
-                <form id="form-registro" action="login.php" method="post" class="form-auth">
+            <div class="auth-panel <?= $modoActivo === "registro" ? "" : "d-none" ?>" id="panel-registro" role="tabpanel">
+                <form id="form-registro" action="login.php" method="post" class="d-flex flex-column gap-4">
                     <input type="hidden" name="accion" value="registro">
                     <div class="row gx-3 gy-4">
                         <label class="campo col-md-6">
@@ -191,7 +191,7 @@ require_once __DIR__ . "/includes/header.php";
                             <span>Nombre de usuario <b>*</b></span>
                             <input type="text" name="reg_usuario" required value="<?= escapar($_POST["reg_usuario"] ?? "") ?>" placeholder="Ej. clara_lectora" autocomplete="username">
                         </label>
-                        
+
                         <label class="campo col-12">
                             <span>Correo electrónico <b>*</b></span>
                             <input type="email" name="reg_email" required value="<?= escapar($_POST["reg_email"] ?? "") ?>" placeholder="ejemplo@correo.com" autocomplete="email">
@@ -208,17 +208,16 @@ require_once __DIR__ . "/includes/header.php";
                         </label>
                     </div>
 
-                    <div class="auth-opciones">
+                    <div>
                         <label class="auth-recordar">
                             <input type="checkbox" name="terminos" required checked>
                             <span>Acepto las normas comunitarias y la política de privacidad de La Estantería</span>
                         </label>
                     </div>
 
-                    <div class="auth-acciones-doble">
-                        <button type="submit" class="btn btn-primario btn-auth">Registrar</button>
-                        <label for="auth-login" class="btn btn-secundario btn-auth">Ya tengo cuenta · Iniciar
-                            sesión</label>
+                    <div class="d-flex flex-column gap-2 mt-2">
+                        <button type="submit" class="btn btn-primario">Registrar</button>
+                        <button type="button" class="btn btn-secundario" data-panel="panel-login">Ya tengo cuenta · Iniciar sesión</button>
                     </div>
                 </form>
             </div>

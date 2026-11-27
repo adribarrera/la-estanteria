@@ -28,6 +28,9 @@ export const Interfaz = {
 
     selectores: {
         botonTema: ".btn-tema", // boton que cambia claro / oscuro
+        pestana: ".auth-tab", // pestañas de login.php
+        panel: ".auth-panel", // paneles que muestran las pestañas
+        cambioPanel: "[data-panel]", // todo lo que cambia de panel: pestañas y botones secundarios
     },
 
     // aplica el tema claro / oscuro, guarda el tema actual y actualiza el boton de cambiar de tema
@@ -72,5 +75,38 @@ export const Interfaz = {
             boton.addEventListener("click", () => this.alternarTema());
         }
         logger.info("Tema iniciado.");
+    },
+
+    // muestra el panel con ese id, oculta el resto y marca su pestaña como activa
+    mostrarPanel(idPanel) {
+        // d-none es la utilidad de Bootstrap que oculta un elemento display: none
+        document.querySelectorAll(this.selectores.panel).forEach((panel) => {
+            if (panel.id === idPanel) {
+                panel.classList.remove("d-none");
+            } else {
+                panel.classList.add("d-none");
+            }
+        });
+
+        // la pestaña activa lleva la clase "activa" (estilo) y aria-selected="true"
+        document.querySelectorAll(this.selectores.pestana).forEach((pestana) => {
+            const esActiva = pestana.getAttribute("data-panel") === idPanel;
+            if (esActiva) {
+                pestana.classList.add("activa");
+            } else {
+                pestana.classList.remove("activa");
+            }
+            pestana.setAttribute("aria-selected", String(esActiva));
+        });
+    },
+
+    // asigna el evento click a pestañas y botones con data-panel (si no estamos en login.php no hay ninguno)
+    iniciarPestanas() {
+        document.querySelectorAll(this.selectores.cambioPanel).forEach((elemento) => {
+            elemento.addEventListener("click", () => {
+                this.mostrarPanel(elemento.getAttribute("data-panel"));
+            });
+        });
+        logger.info("Pestañas iniciadas.");
     }
 };
