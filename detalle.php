@@ -271,7 +271,6 @@ require_once __DIR__ . "/includes/header.php";
                         <!-- Utilidades flex de Bootstrap. Estado a la izquierda, editar/eliminar a la derecha. Si no cabe, baja de línea -->
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
                             <!-- Formulario para actualizar el estado -->
-                            <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido d-flex align-items-center gap-2">
                             <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido">
                                 <input type="hidden" name="accion" value="actualizar_estado">
                                 <label class="sr-only" for="select-estado">Cambiar estado de lectura</label>

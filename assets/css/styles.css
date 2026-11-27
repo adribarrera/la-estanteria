@@ -983,11 +983,6 @@ button {
         padding-bottom: 48px;
     }
 
-    .detalle-rejilla {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
     .detalle-portada {
         width: min(76vw, 300px);
     }
