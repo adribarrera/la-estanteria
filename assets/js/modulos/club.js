@@ -191,6 +191,9 @@ function prepararBotonFavorito(lector) {
 
     // Creamos el botón de favoritos.
     const button = document.createElement('button');
+    // Botón para que nunca envíe un formulario, y las clases de estilo de la web.
+    button.type = 'button';
+    button.classList.add('btn', 'btn-secundario');
 
     // El texto depende de si el libro ya está en favoritos.
     if (lector.favoritos.includes(titulo)) {
