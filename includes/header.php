@@ -23,7 +23,6 @@ $busquedaActual = $_GET["q"] ?? "";
     <title><?= $tituloFinal ?></title>
     <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="assets/js/tema.js"></script>
 </head>
 
 <body>
