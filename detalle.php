@@ -215,18 +215,21 @@ require_once __DIR__ . "/includes/header.php";
                 </div>
             <?php endif; ?>
 
-            <div class="detalle-rejilla">
-                <div class="detalle-portada">
-                    <div class="portada">
-                        <?php if ($tieneImagen): ?>
-                            <img src="<?= escapar($rutaRelativaPortada) ?>" alt="Portada de <?= escapar($libro["titulo"]) ?>">
-                        <?php else: ?>
-                            <em><?= escapar($libro["titulo"]) ?></em>
-                        <?php endif; ?>
+            <!-- Rejilla de Bootstrap. Portada 5/12 e información 7/12 desde md (768px). En móvil una debajo de otra -->
+            <div class="row g-5 align-items-center">
+                <div class="col-md-5">
+                    <div class="detalle-portada">
+                        <div class="portada">
+                            <?php if ($tieneImagen): ?>
+                                <img src="<?= escapar($rutaRelativaPortada) ?>" alt="Portada de <?= escapar($libro["titulo"]) ?>">
+                            <?php else: ?>
+                                <em><?= escapar($libro["titulo"]) ?></em>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
 
-                <div class="info-libro">
+                <div class="col-md-7 info-libro">
                     <p class="sobretitulo">Libro seleccionado</p>
                     <h1><?= escapar($libro["titulo"]) ?></h1>
 
@@ -265,8 +268,10 @@ require_once __DIR__ . "/includes/header.php";
                     </div>
 
                     <?php if ($usuarioLogueado !== null): ?>
-                        <div class="detalle-acciones-gestion">
+                        <!-- Utilidades flex de Bootstrap. Estado a la izquierda, editar/eliminar a la derecha. Si no cabe, baja de línea -->
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
                             <!-- Formulario para actualizar el estado -->
+                            <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido d-flex align-items-center gap-2">
                             <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido">
                                 <input type="hidden" name="accion" value="actualizar_estado">
                                 <label class="sr-only" for="select-estado">Cambiar estado de lectura</label>
@@ -281,9 +286,9 @@ require_once __DIR__ . "/includes/header.php";
                             </form>
 
                             <!-- Enlace a edición completa y formulario para borrar -->
-                            <div class="detalle-botones-crud">
+                            <div class="d-flex align-items-center gap-2">
                                 <a href="formulario.php?id=<?= $idLibro ?>" class="btn btn-secundario">Editar libro</a>
-                                <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-inline-crud">
+                                <form action="detalle.php?id=<?= $idLibro ?>" method="post">
                                     <input type="hidden" name="accion" value="eliminar_libro">
                                     <button type="submit" class="btn btn-peligro">Eliminar libro</button>
                                 </form>
@@ -338,7 +343,8 @@ require_once __DIR__ . "/includes/header.php";
                                 </div>
 
                                 <?php if ($esAutorResena): ?>
-                                    <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-borrar-resena">
+                                    <!-- ms-auto (margin-start: auto) lo empuja al extremo derecho de la cabecera de la reseña -->
+                                    <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="ms-auto">
                                         <input type="hidden" name="accion" value="eliminar_resena">
                                         <input type="hidden" name="id_resena" value="<?= (int) $resena["id_resena"] ?>">
                                         <button type="submit" class="btn-texto-peligro" aria-label="Eliminar mi reseña">Eliminar</button>
@@ -360,7 +366,7 @@ require_once __DIR__ . "/includes/header.php";
                 <?php if ($usuarioLogueado === null): ?>
                     <div class="caja-resumen">
                         <p>Para publicar tu valoración necesitas entrar con tu cuenta del club.</p>
-                        <a href="login.php" class="btn btn-primario" style="margin-top: 12px;">Iniciar sesión o registrarse</a>
+                        <a href="login.php" class="btn btn-primario mt-3">Iniciar sesión o registrarse</a>
                     </div>
                 <?php else: ?>
                     <form id="form-resena" action="detalle.php?id=<?= $idLibro ?>" method="post">
