@@ -22,6 +22,7 @@ $busquedaActual = $_GET["q"] ?? "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloFinal ?></title>
     <link rel="icon" type="image/svg+xml" href="assets/media/logo/favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -45,7 +46,7 @@ $busquedaActual = $_GET["q"] ?? "";
                         <span class="punto" aria-hidden="true"></span>
                         <span class="texto">Tema oscuro</span>
                 </button>
-            
+
                 <!-- Si hay sesión iniciada mostramos su usuario y Salir. Si no, el botón de Login -->
                 <?php if (isset($_SESSION["id_usuario"])): ?>
                     <span class="btn-tema" title="<?= escapar($_SESSION["nombre_completo"] ?? "") ?>">
