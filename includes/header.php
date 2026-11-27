@@ -31,11 +31,14 @@ $busquedaActual = $_GET["q"] ?? "";
         <!-- Fila 1. Logo + acciones -->
         <header class="cabecera navbar navbar-expand-md">
             <a href="index.php" class="marca">
-                <span class="marca-icono" aria-hidden="true"></span>
+                <!-- Logo in line para que sus colores cambien con el tema -->
+                <span class="marca-icono" aria-hidden="true">
+                    <?php readfile(__DIR__ . "/../assets/media/logo/la-estanteria-libro.svg"); ?>
+                </span>
                 <span>La Estantería</span>
             </a>
 
-            <!-- Botón hamburguesa. Solo se ve en móvil. Abre a la vez los dos bloques con la clase .menu-principal -->
+            <!-- Botón hamburguesa: abre los dos bloques .menu-principal -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".menu-principal"
                 aria-controls="menu-acciones menu-enlaces" aria-expanded="false" aria-label="Abrir menú">
                 <span aria-hidden="true">☰</span>
@@ -45,7 +48,7 @@ $busquedaActual = $_GET["q"] ?? "";
                 <div class="cabecera-acciones">
                     <!-- Al enviar manda ?q=... a index.php manteniendo lo que ha escrito el usuario -->
                     <form action="index.php" method="get" class="buscador">
-                        <label for="buscador-catalogo" class="sr-only">Buscar</label>
+                        <label for="buscador-catalogo" class="visually-hidden">Buscar</label>
                         <input type="search" id="buscador-catalogo" name="q" value="<?= escapar($busquedaActual) ?>" placeholder="Buscar...">
                         <span aria-hidden="true">⌕</span>
                     </form>
@@ -78,7 +81,7 @@ $busquedaActual = $_GET["q"] ?? "";
             </div>
         </header>
 
-        <!-- Fila 2. Enlaces. Mismo botón hamburgues. Marcamos con "activo" la pestaña de la página actual -->
+        <!-- Fila 2. Enlaces. Marcamos con "activo" la pestaña de la página actual -->
         <nav class="barra-enlaces navbar navbar-expand-md" aria-label="Navegación principal">
             <div class="collapse navbar-collapse menu-principal" id="menu-enlaces">
                 <div class="navbar-nav">

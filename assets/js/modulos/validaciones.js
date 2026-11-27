@@ -17,7 +17,7 @@ export const Validador = {
 
     selectores: {
         formularios: "form[data-validar]",
-        campo: ".campo, .caja-subida, .caja-resena",
+        campo: ".campo, .caja-subida",
         controles: "input, select, textarea",
     },
 

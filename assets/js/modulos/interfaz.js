@@ -79,7 +79,7 @@ export const Interfaz = {
 
     // muestra el panel con ese id, oculta el resto y marca su pestaña como activa
     mostrarPanel(idPanel) {
-        // d-none es la utilidad de Bootstrap que oculta un elemento display: none
+        // d-none (Bootstrap) oculta los demás paneles
         document.querySelectorAll(this.selectores.panel).forEach((panel) => {
             if (panel.id === idPanel) {
                 panel.classList.remove("d-none");
@@ -88,7 +88,7 @@ export const Interfaz = {
             }
         });
 
-        // la pestaña activa lleva la clase "activa" (estilo) y aria-selected="true"
+        // marcamos la pestaña activa
         document.querySelectorAll(this.selectores.pestana).forEach((pestana) => {
             const esActiva = pestana.getAttribute("data-panel") === idPanel;
             if (esActiva) {
@@ -100,7 +100,7 @@ export const Interfaz = {
         });
     },
 
-    // asigna el evento click a pestañas y botones con data-panel (si no estamos en login.php no hay ninguno)
+    // asigna el click a pestañas y botones con data-panel
     iniciarPestanas() {
         document.querySelectorAll(this.selectores.cambioPanel).forEach((elemento) => {
             elemento.addEventListener("click", () => {

@@ -13,6 +13,17 @@
     --sobre-acento: #FFFFFF;
     --pestana-activa: var(--tarjeta);
     --pestana-sombra: 0 1px 4px rgba(90, 78, 71, 0.12);
+    --logo-tinta: #2B2622;
+    --logo-acento: #B5532E;
+
+    /* Fijos en los dos temas */
+    --peligro: #C62828;
+    --peligro-hover: #B71C1C;
+    --exito: #2E7D32;
+    --exito-fondo: rgba(46, 125, 50, 0.1);
+    --pie-fondo: #8A7F76;
+    --pie-texto: #FAF8F2;
+    --blanco: #FFFFFF;
 
     --fuente-titulo: Georgia, "Times New Roman", serif;
     --fuente-texto: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -36,17 +47,30 @@
     --sobre-acento: #2A2420;
     --pestana-activa: var(--campo);
     --pestana-sombra: 0 1px 4px rgba(0, 0, 0, 0.3);
+    --logo-tinta: #F4EDE1;
+    --logo-acento: #D9774F;
 }
 
 /* ---------- Base ---------- */
-* {
-    box-sizing: border-box;
+h1,
+h2,
+h3,
+p,
+dl,
+dd {
     margin: 0;
-    padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    line-height: inherit;
+}
+
+/* Tamaño por defecto del navegador */
+h3 {
+    font-size: 1.17em;
 }
 
 body {
@@ -74,23 +98,11 @@ textarea {
 button {
     background: none;
     border: 0;
-    cursor: pointer;
 }
 
 :focus-visible {
     outline: 3px solid var(--acento);
     outline-offset: 2px;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
 }
 
 .seccion {
@@ -140,16 +152,21 @@ button {
     place-items: center;
     flex-shrink: 0;
     overflow: hidden;
-    background: #FAF8F2;
+    background: var(--fondo);
     border: 2px solid var(--acento);
     border-radius: 50%;
 }
 
-.marca-icono img {
+.marca-icono svg {
     width: 100%;
     height: 100%;
-    object-fit: contain;
     padding: 5px;
+    transition: transform .3s ease;
+}
+
+.marca:hover .marca-icono svg,
+.marca:focus-visible .marca-icono svg {
+    transform: scale(1.08);
 }
 
 :root[data-tema="oscuro"] .marca-icono {
@@ -187,7 +204,7 @@ button {
     font-size: 13px;
 }
 
-/* Si falta espacio, el buscador encoge en vez de empujar los botones fuera de la pantalla */
+/* El buscador encoge si falta espacio */
 .cabecera .navbar-collapse,
 .cabecera-acciones,
 .buscador,
@@ -258,7 +275,7 @@ button {
 }
 
 /* ---------- Navbar ---------- */
-/* Botón hamburguesa (solo móvil): colores del tema */
+/* Botón hamburguesa */
 .navbar-toggler {
     padding: 4px 12px;
     color: var(--texto);
@@ -267,7 +284,6 @@ button {
     line-height: 1;
 }
 
-/* Fila de enlaces. "barra-enlaces" lleva nuestro diseño y "navbar" el comportamiento de Bootstrap */
 .barra-enlaces {
     padding: 0 var(--margen);
     background: var(--tarjeta);
@@ -288,7 +304,7 @@ button {
     text-decoration: none;
 }
 
-/* Subrayado de la pestaña activa o al pasar el ratón */
+/* Subrayado de la pestaña activa */
 .barra-enlaces a::after {
     content: "";
     position: absolute;
@@ -305,51 +321,6 @@ button {
 
 .barra-enlaces a.activo {
     color: var(--acento);
-}
-
-/* Cabecera en móvil: por debajo del md de Bootstrap (768) */
-@media (max-width: 767.98px) {
-    .cabecera {
-        min-height: 82px;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        gap: 10px;
-    }
-
-    .marca {
-        gap: 8px;
-        font-size: 15px;
-    }
-
-    .marca-icono {
-        width: 34px;
-        height: 34px;
-    }
-
-    /* Menú desplegado: acciones una debajo de otra y a todo el ancho */
-    .cabecera-acciones {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .buscador {
-        width: 100%;
-    }
-
-    .barra-enlaces {
-        border-bottom: 0;
-    }
-
-    .barra-enlaces .navbar-nav {
-        gap: 0;
-        padding-bottom: 8px;
-    }
-
-    /* El subrayado solo ocupa el ancho del texto, no toda la fila */
-    .barra-enlaces a {
-        align-self: flex-start;
-        padding: 12px 0;
-    }
 }
 
 /* ---------- Títulos de sección ---------- */
@@ -472,6 +443,14 @@ button {
     width: 8px;
     background: var(--acento);
     opacity: .55;
+}
+
+/* La imagen siempre llena la caja, sea cual sea su ancho */
+.portada img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 .portada em {
@@ -635,6 +614,7 @@ button {
 
 .caja-info dt {
     color: var(--texto-sec);
+    font-weight: 400;
 }
 
 .caja-info dd {
@@ -776,13 +756,12 @@ button {
     outline: 2px solid var(--acento);
 }
 
-/* Solo el margen. La rejilla de dentro es de Bootstrap */
 .form-extras {
     margin-top: 28px;
 }
 
-.caja-subida,
-.caja-resena {
+.caja-subida {
+    height: 100%;
     min-height: 146px;
     padding: 20px;
     display: flex;
@@ -794,10 +773,6 @@ button {
     border: 1px dashed var(--acento);
     border-radius: 12px;
     font-size: 14px;
-}
-
-.caja-subida {
-    height: 100%;
     cursor: pointer;
 }
 
@@ -812,17 +787,11 @@ button {
     color: var(--acento);
 }
 
-.caja-subida small,
-.caja-resena small {
+.caja-subida small {
     color: var(--texto-sec);
     font-size: 10px;
     letter-spacing: .08em;
     text-transform: uppercase;
-}
-
-.caja-resena .estrellas {
-    margin-bottom: 4px;
-    font-size: 26px;
 }
 
 .form-acciones {
@@ -838,33 +807,52 @@ button {
 .btn {
     min-width: 116px;
     padding: 12px 20px;
-    border: 1px solid var(--acento);
     border-radius: 8px;
     font-size: 14px;
     font-weight: 700;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color .15s ease;
 }
 
+/* Bootstrap quita el contorno de foco */
+.btn:focus-visible {
+    outline: 3px solid var(--acento);
+    outline-offset: 2px;
+}
+
+/* Colores de cada estado con las variables de Bootstrap */
 .btn-primario {
-    background: var(--acento);
-    color: var(--sobre-acento);
-}
-
-.btn-primario:hover {
-    background: var(--acento-hover);
-    border-color: var(--acento-hover);
+    --bs-btn-color: var(--sobre-acento);
+    --bs-btn-bg: var(--acento);
+    --bs-btn-border-color: var(--acento);
+    --bs-btn-hover-color: var(--sobre-acento);
+    --bs-btn-hover-bg: var(--acento-hover);
+    --bs-btn-hover-border-color: var(--acento-hover);
+    --bs-btn-active-color: var(--sobre-acento);
+    --bs-btn-active-bg: var(--acento-hover);
+    --bs-btn-active-border-color: var(--acento-hover);
 }
 
 .btn-secundario {
-    background: transparent;
-    color: var(--acento);
+    --bs-btn-color: var(--acento);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--acento);
+    --bs-btn-hover-color: var(--acento);
+    --bs-btn-hover-bg: var(--fondo);
+    --bs-btn-hover-border-color: var(--acento);
+    --bs-btn-active-color: var(--acento);
+    --bs-btn-active-bg: var(--fondo);
+    --bs-btn-active-border-color: var(--acento);
 }
 
-.btn-secundario:hover {
-    background: var(--fondo);
+.btn-peligro {
+    --bs-btn-color: var(--blanco);
+    --bs-btn-bg: var(--peligro);
+    --bs-btn-border-color: var(--peligro);
+    --bs-btn-hover-color: var(--blanco);
+    --bs-btn-hover-bg: var(--peligro-hover);
+    --bs-btn-hover-border-color: var(--peligro-hover);
+    --bs-btn-active-color: var(--blanco);
+    --bs-btn-active-bg: var(--peligro-hover);
+    --bs-btn-active-border-color: var(--peligro-hover);
 }
 
 /* ---------- Pie ---------- */
@@ -875,9 +863,9 @@ button {
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    background: #8A7F76;
+    background: var(--pie-fondo);
     border-top: 1px solid var(--borde-fuerte);
-    color: #FAF8F2;
+    color: var(--pie-texto);
     font-size: 13px;
 }
 
@@ -887,16 +875,16 @@ button {
 }
 
 .pie a {
-    color: #FAF8F2;
+    color: var(--pie-texto);
     text-underline-offset: 3px;
 }
 
 .pie a:hover {
-    color: #FFFFFF;
+    color: var(--blanco);
 }
 
-/* ---------- Móvil ---------- */
-@media (max-width: 650px) {
+/* ---------- Móvil y tablet (menos de 768px) ---------- */
+@media (max-width: 767.98px) {
     :root {
         --margen: 18px;
     }
@@ -906,7 +894,48 @@ button {
         scroll-margin-top: 90px;
     }
 
+    /* Cabecera y navbar (menú hamburguesa) */
+    .cabecera {
+        min-height: 82px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        gap: 10px;
+    }
 
+    .marca {
+        gap: 8px;
+        font-size: 15px;
+    }
+
+    .marca-icono {
+        width: 34px;
+        height: 34px;
+    }
+
+    /* Menú desplegado en columna */
+    .cabecera-acciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buscador {
+        width: 100%;
+    }
+
+    .barra-enlaces {
+        border-bottom: 0;
+    }
+
+    .barra-enlaces .navbar-nav {
+        gap: 0;
+        padding-bottom: 8px;
+    }
+
+    /* Subrayado solo bajo el texto */
+    .barra-enlaces a {
+        align-self: flex-start;
+        padding: 12px 0;
+    }
 
     /* Títulos */
     .encabezado-seccion {
@@ -950,11 +979,6 @@ button {
 
     .genero-linea {
         flex-basis: 100%;
-    }
-
-    .rejilla-libros {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 24px 14px;
     }
 
     .seccion-resenas-dest {
@@ -1052,7 +1076,15 @@ button {
     }
 }
 
-/* ---------- Acceso y registro (pestañas: Interfaz.iniciarPestanas en interfaz.js) ----------
+/* ---------- Móvil pequeño (menos de 576px) ---------- */
+@media (max-width: 575.98px) {
+    .rejilla-libros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 14px;
+    }
+}
+
+/* ---------- Acceso y registro ----------
    Va al final a propósito porque ajusta el título del login por encima de las reglas móviles. */
 .tarjeta-auth {
     max-width: 580px;
@@ -1100,7 +1132,7 @@ button {
     color: var(--texto);
 }
 
-/* Pestaña activa: la marca Interfaz.mostrarPanel() con la clase .activa */
+/* Pestaña activa (la marca interfaz.js) */
 .auth-tab.activa {
     background: var(--pestana-activa);
     color: var(--acento);
@@ -1134,10 +1166,10 @@ button {
     color: var(--fondo);
 }
 
-/* Estilos de alertas de éxito y controles CRUD en detalle.php */
+/* Alertas de éxito y controles CRUD en detalle.php */
 .alerta-exito {
-    border-left: 4px solid #2e7d32;
-    background-color: rgba(46, 125, 50, 0.1);
+    border-left: 4px solid var(--exito);
+    background-color: var(--exito-fondo);
     color: inherit;
     margin-bottom: 1.5rem;
 }
@@ -1149,36 +1181,22 @@ button {
 .form-estado-rapido select {
     padding: 8px 12px;
     border-radius: 8px;
-    border: 1px solid var(--borde, rgba(128, 128, 128, 0.3));
-    background: var(--superficie, transparent);
-    color: inherit;
-    font: inherit;
+    border: 1px solid var(--borde);
+    background: transparent;
 }
 
-.btn-peligro {
-    background-color: #c62828;
-    color: #ffffff;
-    border: none;
-}
-
-.btn-peligro:hover {
-    background-color: #b71c1c;
-}
-
+/* Eliminar reseña propia */
 .btn-texto-peligro {
-    background: none;
-    border: none;
-    color: #d32f2f;
-    font-size: 0.85rem;
-    cursor: pointer;
-    text-decoration: underline;
     padding: 4px;
+    color: var(--peligro);
+    font-size: 0.85rem;
+    text-decoration: underline;
 }
 
 .bloque-audio-libro {
     margin-top: 1.25rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--borde, rgba(128, 128, 128, 0.2));
+    border-top: 1px solid var(--borde);
 }
 
 .bloque-audio-libro audio {

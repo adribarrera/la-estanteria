@@ -215,7 +215,7 @@ require_once __DIR__ . "/includes/header.php";
                 </div>
             <?php endif; ?>
 
-            <!-- Rejilla de Bootstrap. Portada 5/12 e información 7/12 desde md (768px). En móvil una debajo de otra -->
+            <!-- Portada e información del libro -->
             <div class="row g-5 align-items-center">
                 <div class="col-md-5">
                     <div class="detalle-portada">
@@ -268,12 +268,12 @@ require_once __DIR__ . "/includes/header.php";
                     </div>
 
                     <?php if ($usuarioLogueado !== null): ?>
-                        <!-- Utilidades flex de Bootstrap. Estado a la izquierda, editar/eliminar a la derecha. Si no cabe, baja de línea -->
+                        <!-- Acciones de gestión del libro -->
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
                             <!-- Formulario para actualizar el estado -->
                             <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="form-estado-rapido d-flex align-items-center gap-2">
                                 <input type="hidden" name="accion" value="actualizar_estado">
-                                <label class="sr-only" for="select-estado">Cambiar estado de lectura</label>
+                                <label class="visually-hidden" for="select-estado">Cambiar estado de lectura</label>
                                 <select name="estado" id="select-estado">
                                     <?php foreach ($estadosValidos as $clave => $etiqueta): ?>
                                         <option value="<?= escapar($clave) ?>" <?= $libro["estado"] === $clave ? "selected" : "" ?>>
@@ -342,7 +342,6 @@ require_once __DIR__ . "/includes/header.php";
                                 </div>
 
                                 <?php if ($esAutorResena): ?>
-                                    <!-- ms-auto (margin-start: auto) lo empuja al extremo derecho de la cabecera de la reseña -->
                                     <form action="detalle.php?id=<?= $idLibro ?>" method="post" class="ms-auto">
                                         <input type="hidden" name="accion" value="eliminar_resena">
                                         <input type="hidden" name="id_resena" value="<?= (int) $resena["id_resena"] ?>">

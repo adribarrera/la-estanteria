@@ -56,7 +56,7 @@ require_once __DIR__ . "/includes/header.php";
                 <?php if ($busqueda !== ""): ?>
                     <p>
                         Resultados para <strong>"<?= escapar($busqueda) ?>"</strong> ·
-                        <a href="index.php" class="enlace-limpiar-busqueda">Ver todo el catálogo</a>
+                        <a href="index.php">Ver todo el catálogo</a>
                     </p>
                 <?php else: ?>
                     <p>Explora las lecturas seleccionadas por nuestra comunidad.</p>
@@ -68,7 +68,7 @@ require_once __DIR__ . "/includes/header.php";
                     <p><?= escapar($errorBBDD) ?></p>
                 </div>
             <?php elseif (empty($librosPorGenero)): ?>
-                <div class="caja-resumen estado-vacio">
+                <div class="caja-resumen">
                     <p>No hemos encontrado ningún libro que coincida con tu búsqueda.</p>
                     <a href="formulario.php" class="btn btn-primario">Añadir un libro nuevo</a>
                 </div>
@@ -113,11 +113,11 @@ require_once __DIR__ . "/includes/header.php";
             </div>
 
             <?php if (empty($resenasDestacadas)): ?>
-                <div class="caja-resumen estado-vacio">
+                <div class="caja-resumen">
                     <p>Aún no hay reseñas publicadas. Entra en cualquier libro del catálogo y deja la primera.</p>
                 </div>
             <?php else: ?>
-                <!-- Rejilla de Bootstrap: 1 columna en móvil, 3 a partir de md (768px). g-3 separa las tarjetas -->
+                <!-- Tres reseñas por fila en escritorio, una en móvil -->
                 <div class="row g-3">
                     <?php foreach ($resenasDestacadas as $resena): ?>
                         <?php
@@ -135,7 +135,7 @@ require_once __DIR__ . "/includes/header.php";
                                     </div>
                                 </div>
                                 <p><?= escapar($resena["comentario"]) ?></p>
-                                <p class="resena-libro-ref">
+                                <p>
                                     En <a href="detalle.php?id=<?= (int) $resena["id_libro"] ?>"><?= escapar($resena["titulo_libro"]) ?></a>
                                 </p>
                             </article>

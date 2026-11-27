@@ -312,7 +312,7 @@ require_once __DIR__ . "/includes/header.php";
                     </label>
                 </div>
 
-                <!-- form-extras solo pone el margen. Dentro la rejilla de Bootstrap -->
+                <!-- Subida de portada y audio -->
                 <div class="form-extras">
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -320,7 +320,7 @@ require_once __DIR__ . "/includes/header.php";
                                 <span class="mas" aria-hidden="true">+</span>
                                 <span><?= $esEdicion ? "Cambiar imagen de portada" : "Añadir imagen de portada" ?></span>
                                 <small><?= $esEdicion ? "Opcional · Se mantiene la actual si no subes otra (WEBP, JPG o PNG)" : "Obligatorio (WEBP, JPG o PNG · Máx. 5 MB)" ?></small>
-                                <input type="file" name="portada" accept="image/webp,image/jpeg,image/png" class="sr-only" <?= $esEdicion ? "" : "required" ?>>
+                                <input type="file" name="portada" accept="image/webp,image/jpeg,image/png" class="visually-hidden" <?= $esEdicion ? "" : "required" ?>>
                             </label>
                         </div>
 
@@ -329,7 +329,7 @@ require_once __DIR__ . "/includes/header.php";
                                 <span class="mas" aria-hidden="true">♪</span>
                                 <span><?= ($esEdicion && $datos["audio"] !== "") ? "Sustituir fragmento de audiolibro" : "Añadir fragmento de audiolibro" ?></span>
                                 <small>Opcional (MP3, OGG o WAV · Máx. 15 MB)</small>
-                                <input type="file" name="audio" accept="audio/mpeg,audio/ogg,audio/wav" class="sr-only">
+                                <input type="file" name="audio" accept="audio/mpeg,audio/ogg,audio/wav" class="visually-hidden">
                             </label>
                         </div>
                     </div>

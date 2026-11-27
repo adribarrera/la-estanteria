@@ -105,11 +105,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     header("Location: index.php");
                     exit();
-                } 
+                }
             } catch(PDOException $e) {
                 error_log("Error en el registro " . $e->getMessage());
                 $errores[] = "No se ha podido completar el registro. Inténtalo más tarde";
-            }  
+            }
         }
     }
 }
@@ -119,7 +119,7 @@ $paginaActiva = "login";
 require_once __DIR__ . "/includes/header.php";
 ?>
 
-    <main class="seccion pagina-form pagina-auth">
+    <main class="seccion pagina-form">
         <div class="tarjeta-form tarjeta-auth">
             <div class="cabecera-form cabecera-auth">
                 <p class="sobretitulo">Comunidad lectora</p>
@@ -136,8 +136,7 @@ require_once __DIR__ . "/includes/header.php";
                 </div>
             <?php endif; ?>
 
-            <!-- Pestañas. PHP marca la activa al cargar y después Interfaz.iniciarPestanas() las cambia.
-            data-panel indica el id del panel que muestra cada pestaña -->
+            <!-- Pestañas: PHP marca la activa al cargar y interfaz.js las cambia -->
             <div class="auth-tabs" role="tablist">
                 <button type="button" class="auth-tab <?= $modoActivo === "login" ? "activa" : "" ?>" data-panel="panel-login"
                     role="tab" aria-controls="panel-login" aria-selected="<?= $modoActivo === "login" ? "true" : "false" ?>">Iniciar sesión</button>
@@ -145,7 +144,7 @@ require_once __DIR__ . "/includes/header.php";
                     role="tab" aria-controls="panel-registro" aria-selected="<?= $modoActivo === "registro" ? "true" : "false" ?>">Registrarse</button>
             </div>
 
-            <!-- Iniciar sesión. d-none oculta el panel que no está activo -->
+            <!-- Iniciar sesión -->
             <div class="auth-panel <?= $modoActivo === "login" ? "" : "d-none" ?>" id="panel-login" role="tabpanel">
                 <form id="form-login" action="login.php" method="post" class="d-flex flex-column gap-4">
                     <!-- Campo oculto para saber en PHP qué formulario de los dos se ha enviado -->
