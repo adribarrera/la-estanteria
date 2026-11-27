@@ -152,18 +152,8 @@ button {
     padding: 5px;
 }
 
-/* Dos logos: se muestra uno según el tema */
-.logo-oscuro,
-:root[data-tema="oscuro"] .logo-claro {
-    display: none;
-}
-
 :root[data-tema="oscuro"] .marca-icono {
     background: var(--tarjeta);
-}
-
-:root[data-tema="oscuro"] .logo-oscuro {
-    display: block;
 }
 
 .cabecera-acciones {
@@ -173,7 +163,7 @@ button {
 }
 
 .buscador {
-    width: min(360px, 38vw);
+    width: 360px;
     height: 42px;
     padding: 0 14px;
     display: flex;
@@ -195,6 +185,14 @@ button {
     border: 0;
     outline: none;
     font-size: 13px;
+}
+
+/* Si falta espacio, el buscador encoge en vez de empujar los botones fuera de la pantalla */
+.cabecera .navbar-collapse,
+.cabecera-acciones,
+.buscador,
+.buscador input {
+    min-width: 0;
 }
 
 .buscador input::placeholder {
@@ -260,16 +258,28 @@ button {
 }
 
 /* ---------- Navbar ---------- */
-.navbar {
-    min-height: 50px;
+/* Botón hamburguesa (solo móvil): colores del tema */
+.navbar-toggler {
+    padding: 4px 12px;
+    color: var(--texto);
+    border-color: var(--borde-fuerte);
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* Fila de enlaces. "barra-enlaces" lleva nuestro diseño y "navbar" el comportamiento de Bootstrap */
+.barra-enlaces {
     padding: 0 var(--margen);
-    display: flex;
-    gap: 36px;
     background: var(--tarjeta);
     border-bottom: 1px solid var(--borde-fuerte);
 }
 
-.navbar a {
+.barra-enlaces .navbar-nav {
+    min-height: 50px;
+    gap: 36px;
+}
+
+.barra-enlaces a {
     position: relative;
     padding: 16px 0 12px;
     color: var(--texto);
@@ -278,7 +288,8 @@ button {
     text-decoration: none;
 }
 
-.navbar a::after {
+/* Subrayado de la pestaña activa o al pasar el ratón */
+.barra-enlaces a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -287,13 +298,58 @@ button {
     height: 3px;
 }
 
-.navbar a:hover::after,
-.navbar a.activo::after {
+.barra-enlaces a:hover::after,
+.barra-enlaces a.activo::after {
     background: var(--acento);
 }
 
-.navbar a.activo {
+.barra-enlaces a.activo {
     color: var(--acento);
+}
+
+/* Cabecera en móvil: por debajo del lg de Bootstrap (992px) */
+@media (max-width: 991.98px) {
+    .cabecera {
+        min-height: 82px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        gap: 10px;
+    }
+
+    .marca {
+        gap: 8px;
+        font-size: 15px;
+    }
+
+    .marca-icono {
+        width: 34px;
+        height: 34px;
+    }
+
+    /* Menú desplegado: acciones una debajo de otra y a todo el ancho */
+    .cabecera-acciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buscador {
+        width: 100%;
+    }
+
+    .barra-enlaces {
+        border-bottom: 0;
+    }
+
+    .barra-enlaces .navbar-nav {
+        gap: 0;
+        padding-bottom: 8px;
+    }
+
+    /* El subrayado solo ocupa el ancho del texto, no toda la fila */
+    .barra-enlaces a {
+        align-self: flex-start;
+        padding: 12px 0;
+    }
 }
 
 /* ---------- Títulos de sección ---------- */
@@ -873,76 +929,7 @@ button {
         scroll-margin-top: 90px;
     }
 
-    /* Cabecera y navbar */
-    .cabecera {
-        min-height: 82px;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        gap: 10px;
-    }
 
-    .marca {
-        gap: 8px;
-        font-size: 15px;
-        white-space: nowrap;
-    }
-
-    .marca-icono {
-        width: 34px;
-        height: 34px;
-    }
-
-    .cabecera-acciones {
-        gap: 5px;
-    }
-
-    .buscador {
-        width: 104px;
-        height: 36px;
-        padding: 0 9px;
-    }
-
-    .buscador input {
-        min-width: 0;
-        font-size: 12px;
-    }
-
-    .btn-tema {
-        width: 38px;
-        height: 36px;
-        padding: 0;
-        justify-content: center;
-        font-size: 0;
-        /* solo se ve el punto */
-    }
-
-    .btn-tema .punto {
-        width: 14px;
-        height: 14px;
-    }
-
-    .btn-login {
-        height: 36px;
-        padding: 0 10px;
-        gap: 5px;
-        font-size: 11px;
-    }
-
-    .btn-login svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    .navbar {
-        min-height: 48px;
-        gap: 12px;
-        justify-content: space-between;
-    }
-
-    .navbar a {
-        padding-top: 14px;
-        font-size: 11px;
-    }
 
     /* Títulos */
     .encabezado-seccion {

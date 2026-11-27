@@ -28,52 +28,65 @@ $busquedaActual = $_GET["q"] ?? "";
 
 <body>
     <div class="cabecera-fija">
-        <header class="cabecera">
+        <!-- Fila 1. Logo + acciones -->
+        <header class="cabecera navbar navbar-expand-lg">
             <a href="index.php" class="marca">
                 <span class="marca-icono" aria-hidden="true"></span>
                 <span>La Estantería</span>
             </a>
 
-            <div class="cabecera-acciones">
-                <!-- Al enviar manda ?q=... a index.php manteniendo lo que ha escrito el usuario -->
-                <form action="index.php" method="get" class="buscador">
-                    <label for="buscador-catalogo" class="sr-only">Buscar</label>
-                    <input type="search" id="buscador-catalogo" name="q" value="<?= escapar($busquedaActual) ?>" placeholder="Buscar...">
-                    <span aria-hidden="true">⌕</span>
-                </form>
+            <!-- Botón hamburguesa. Solo se ve en móvil. Abre a la vez los dos bloques con la clase .menu-principal -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".menu-principal"
+                aria-controls="menu-acciones menu-enlaces" aria-expanded="false" aria-label="Abrir menú">
+                <span aria-hidden="true">☰</span>
+            </button>
 
-                <button type="button" class="btn-tema" aria-pressed="false">
+            <div class="collapse navbar-collapse justify-content-end menu-principal" id="menu-acciones">
+                <div class="cabecera-acciones">
+                    <!-- Al enviar manda ?q=... a index.php manteniendo lo que ha escrito el usuario -->
+                    <form action="index.php" method="get" class="buscador">
+                        <label for="buscador-catalogo" class="sr-only">Buscar</label>
+                        <input type="search" id="buscador-catalogo" name="q" value="<?= escapar($busquedaActual) ?>" placeholder="Buscar...">
+                        <span aria-hidden="true">⌕</span>
+                    </form>
+
+                    <button type="button" class="btn-tema" aria-pressed="false">
                         <span class="punto" aria-hidden="true"></span>
                         <span class="texto">Tema oscuro</span>
-                </button>
+                    </button>
 
-                <!-- Si hay sesión iniciada mostramos su usuario y Salir. Si no, el botón de Login -->
-                <?php if (isset($_SESSION["id_usuario"])): ?>
-                    <span class="btn-tema" title="<?= escapar($_SESSION["nombre_completo"] ?? "") ?>">
-                        @<?= escapar($_SESSION["nombre_usuario"]) ?>
-                    </span>
+                    <!-- Si hay sesión iniciada mostramos su usuario y Salir. Si no, el botón de Login -->
+                    <?php if (isset($_SESSION["id_usuario"])): ?>
+                        <span class="btn-tema" title="<?= escapar($_SESSION["nombre_completo"] ?? "") ?>">
+                            @<?= escapar($_SESSION["nombre_usuario"]) ?>
+                        </span>
 
-                    <a href="logout.php" class="btn-login" aria-label="Cerrar sesión">
-                        <span>Salir</span>
-                    </a>
-                <?php else: ?>
-                    <a href="login.php" class="btn-login" aria-label="Iniciar Sesión o registrarse">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        <span>Login</span>
-                    </a>
-                <?php endif; ?>
+                        <a href="logout.php" class="btn-login" aria-label="Cerrar sesión">
+                            <span>Salir</span>
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="btn-login" aria-label="Iniciar Sesión o registrarse">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>Login</span>
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </header>
 
-        <!-- Marcamos con la clase activo la pestaña que corresponde a la página actual -->
-        <nav class="navbar" aria-label="Navegación principal">
-            <a href="index.php" <?= $paginaActiva === 'inicio' ? 'class="activo" aria-current="page"' : '' ?>>Inicio</a>
-            <a href="index.php#catalogo" <?= $paginaActiva === 'catalogo' ? 'class="activo" aria-current="page"' : '' ?>>Catálogo</a>
-            <a href="index.php#resenas-destacadas">Reseñas recientes</a>
-            <a href="formulario.php" <?= $paginaActiva === 'formulario' ? 'class="activo" aria-current="page"' : '' ?>>Añadir libro</a>
+        <!-- Fila 2. Enlaces. Mismo botón hamburgues. Marcamos con "activo" la pestaña de la página actual -->
+        <nav class="barra-enlaces navbar navbar-expand-lg" aria-label="Navegación principal">
+            <div class="collapse navbar-collapse menu-principal" id="menu-enlaces">
+                <div class="navbar-nav">
+                    <a href="index.php" <?= $paginaActiva === 'inicio' ? 'class="activo" aria-current="page"' : '' ?>>Inicio</a>
+                    <a href="index.php#catalogo" <?= $paginaActiva === 'catalogo' ? 'class="activo" aria-current="page"' : '' ?>>Catálogo</a>
+                    <a href="index.php#resenas-destacadas">Reseñas recientes</a>
+                    <a href="formulario.php" <?= $paginaActiva === 'formulario' ? 'class="activo" aria-current="page"' : '' ?>>Añadir libro</a>
+                </div>
+            </div>
         </nav>
     </div>
